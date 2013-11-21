@@ -37,15 +37,15 @@
 namespace CPM_NAMESPACE {
 
 //------------------------------------------------------------------------------
-ArcBall::ArcBall(const spire::V3& center, float radius, const spire::M44& screenToTCS) :
+ArcBall::ArcBall(const glm::vec3& center, float radius, const glm::mat4& screenToTCS) :
     mCenter(center),
     mRadius(radius),
     mScreenToTCS(screenToTCS)
 {
   // glm uses the following format for quaternions: w,x,y,z.
   //        w,    x,    y,    z
-  spire::Quat qOne(1.0f, 0.0f, 0.0f, 0.0f);
-  spire::V3   vZero(0.0f, 0.0f, 0.0f);
+  glm::quat qOne(1.0f, 0.0f, 0.0f, 0.0f);
+  glm::vec3 vZero(0.0f, 0.0f, 0.0f);
 
   mVDown    = vZero;
   mVNow     = vZero;
@@ -59,9 +59,9 @@ ArcBall::~ArcBall()
 }
 
 //------------------------------------------------------------------------------
-spire::V3 ArcBall::mouseOnSphere(const spire::V3& tscMouse)
+glm::vec3 ArcBall::mouseOnSphere(const glm::vec3& tscMouse)
 {
-  spire::V3 ballMouse;
+  glm::vec3 ballMouse;
 
   // (m - C) / R
   ballMouse.x = (tscMouse.x - mCenter.x) / mRadius;
@@ -87,21 +87,21 @@ spire::V3 ArcBall::mouseOnSphere(const spire::V3& tscMouse)
 }
 
 //------------------------------------------------------------------------------
-void ArcBall::beginDrag(const spire::V2& msc)
+void ArcBall::beginDrag(const glm::vec2& msc)
 {
   // The next two lines are usually a part of end drag. But end drag introduces
   // too much statefullness, so we are shortcircuiting it.
   mQDown      = mQNow;
 
   // Normal 'begin' code.
-  mVDown      = (mScreenToTCS * spire::V4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
+  mVDown      = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
 }
 
 //------------------------------------------------------------------------------
-void ArcBall::drag(const spire::V2& msc)
+void ArcBall::drag(const glm::vec2& msc)
 {
   // Regular drag code to follow...
-  mVNow       = (mScreenToTCS * spire::V4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
+  mVNow       = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
   mVSphereFrom= mouseOnSphere(mVDown);
   mVSphereTo  = mouseOnSphere(mVNow);
 
@@ -112,7 +112,7 @@ void ArcBall::drag(const spire::V2& msc)
   mQNow = mQDrag * mQDown;
 
   // Perform complex conjugate
-  spire::Quat q = mQNow;
+  glm::quat q = mQNow;
   q.x = -q.x;
   q.y = -q.y;
   q.z = -q.z;
@@ -121,9 +121,9 @@ void ArcBall::drag(const spire::V2& msc)
 }
 
 //------------------------------------------------------------------------------
-spire::Quat ArcBall::quatFromUnitSphere(const spire::V3& from, const spire::V3& to)
+glm::quat ArcBall::quatFromUnitSphere(const glm::vec3& from, const glm::vec3& to)
 {
-  spire::Quat q;
+  glm::quat q;
   q.x = from.y*to.z - from.z*to.y;
   q.y = from.z*to.x - from.x*to.z;
   q.z = from.x*to.y - from.y*to.x;
@@ -132,7 +132,7 @@ spire::Quat ArcBall::quatFromUnitSphere(const spire::V3& from, const spire::V3& 
 }
 
 //------------------------------------------------------------------------------
-spire::M44 ArcBall::getTransformation() const
+glm::mat4 ArcBall::getTransformation() const
 {
   return mMatNow;
 }

@@ -29,14 +29,12 @@
 /// \author James Hughes
 /// \date   April 2013
 
-#ifndef SPIRE_APPSPECIFIC_SCIRUN_SCIBALL_H
-#define SPIRE_APPSPECIFIC_SCIRUN_SCIBALL_H
+#ifndef IAUNS_ARC_BALL_H
+#define IAUNS_ARC_BALL_H
 
 #include <cstdint>
 
 #include "../namespaces.h"
-
-#include "spire/Interface.h"
 
 namespace CPM_NAMESPACE {
 
@@ -69,17 +67,17 @@ public:
   ///                       default is 0.75.
   /// \param screenToTCS    Transformation from screen coordinates
   ///                       to TCS. 'center' and 'radius' are given in TCS.
-  ArcBall(const spire::V3& center, float radius,
-          const spire::M44& screenToTCS = spire::M44());
+  ArcBall(const glm::vec3& center, float radius,
+          const glm::mat4& screenToTCS = glm::mat4());
   virtual ~ArcBall();
   
   /// Initiate an arc ball drag given the mouse click in screen coordinates.
   /// \param mouseScreenCoords  Mouse screen coordinates.
-  void beginDrag(const spire::V2& mouseScreenCoords);
+  void beginDrag(const glm::vec2& mouseScreenCoords);
 
   /// Informs the arcball when the mouse has been dragged.
   /// \param mouseScreenCoords  Mouse screen coordinates.
-  void drag(const spire::V2& mouseScreenCoords);
+  void drag(const glm::vec2& mouseScreenCoords);
 
   /// Retrieves the current transformation in TCS.
   /// Obtains full transformation of object in question. If the arc ball is 
@@ -87,44 +85,44 @@ public:
   /// concatenated camera transformations. The current state of the camera
   /// is stored in the quaternions mQDown and mQNow. mMatNow is calculated
   /// from mQNow.
-  spire::M44 getTransformation() const;
+  glm::mat4 getTransformation() const;
 
 private:
 
   /// Calculates our position on the ArcBall from 2D mouse position.
   /// \param tscMouse   TSC coordinates of mouse click.
-  spire::V3 mouseOnSphere(const spire::V3& tscMouse);
+  glm::vec3 mouseOnSphere(const glm::vec3& tscMouse);
 
   /// Construct a unit quaternion from two points on the unit sphere.
-  static spire::Quat quatFromUnitSphere(const spire::V3& from, const spire::V3& to);
+  static glm::quat quatFromUnitSphere(const glm::vec3& from, const glm::vec3& to);
 
-  spire::V3   mCenter;        ///< Center of the arcball in target coordinate system.
+  glm::vec3   mCenter;        ///< Center of the arcball in target coordinate system.
   float       mRadius;        ///< Radius of the arcball in target coordinate system.
 
   /// \note Both mQNow and mQDown would need to be updated if we allowed
   ///       default transformations.
 
-  spire::Quat mQNow;          ///< Current state of the rotation taking into account mouse.
+  glm::quat mQNow;            ///< Current state of the rotation taking into account mouse.
                               ///< Essentially QDrag * QDown (QDown is a applied first, just
                               ///< as in matrix multiplication).
-  spire::Quat mQDown;         ///< State of the rotation since mouse down.
-  spire::Quat mQDrag;         ///< Dragged transform. Knows nothing of any prior 
+  glm::quat mQDown;           ///< State of the rotation since mouse down.
+  glm::quat mQDrag;           ///< Dragged transform. Knows nothing of any prior 
                               ///< transformations.
 
-  spire::V3   mVNow;          ///< Most current TCS position of mouse (during drag).
-  spire::V3   mVDown;         ///< TCS position of mouse when the drag was begun.
-  spire::V3   mVSphereFrom;   ///< vDown mapped to the sphere of 'mRadius' centered at 'mCenter' in TCS.
-  spire::V3   mVSphereTo;     ///< vNow mapped to the sphere of 'mRadius' centered at 'mCenter' in TCS.
+  glm::vec3   mVNow;          ///< Most current TCS position of mouse (during drag).
+  glm::vec3   mVDown;         ///< TCS position of mouse when the drag was begun.
+  glm::vec3   mVSphereFrom;   ///< vDown mapped to the sphere of 'mRadius' centered at 'mCenter' in TCS.
+  glm::vec3   mVSphereTo;     ///< vNow mapped to the sphere of 'mRadius' centered at 'mCenter' in TCS.
 
-  spire::M44  mMatNow;        ///< Matrix representing the current rotation.
+  glm::mat4   mMatNow;        ///< Matrix representing the current rotation.
 
   /// \todo Add in constraint sets (you can display handles and constrain
   ///       rotations along those handles).
 
   /// Transform from screen coordinates to the target coordinate system.
-  spire::M44  mScreenToTCS;
+  glm::mat4   mScreenToTCS;
 };
 
 } // namespace CPM_NAMESPACE
 
-#endif 
+#endif
