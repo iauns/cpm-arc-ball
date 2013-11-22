@@ -49,6 +49,11 @@ CPM_AddModule("google_test",
 CPM_Finish()
 
 #-----------------------------------------------------------------------
+# Copy appropriate shaders and assets
+#-----------------------------------------------------------------------
+CPM_GetSourceDir("spire_testing" SPIRE_TESTING_SOURCE_DIR)
+
+#-----------------------------------------------------------------------
 # Configure OpenGL
 #-----------------------------------------------------------------------
 find_package(OpenGL REQUIRED)
