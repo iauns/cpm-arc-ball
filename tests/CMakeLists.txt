@@ -34,14 +34,14 @@ CPM_AddModule("gl_context"
 # ++ MODULE: Spire
 CPM_AddModule("spire"
   GIT_REPOSITORY "https://github.com/SCIInstitute/spire"
-  GIT_TAG "origin/master")
+  GIT_TAG "origin/dev")
 
 # ++ MODULE: Spire testing
 CPM_AddModule("spire_testing",
   GIT_REPOSITORY "https://github.com/iauns/cpm-spire-testing",
   GIT_TAG "origin/master")
 
-# ++ MODULE: Google Test
+# ++ EXTERNAL-MODULE: Google Test
 CPM_AddModule("google_test",
   GIT_REPOSITORY "https://github.com/iauns/cpm-google-test",
   GIT_TAG "origin/master")
@@ -75,9 +75,17 @@ file(GLOB Sources
 ########################################################################
 # Setup executable
 
+# For google test...
+if (UNIX)
+  if (NOT APPLE)
+    set(PTHREADS "-pthread")
+  endif()
+endif()
+
 add_executable(gl_test_batch ${Sources})
 
 target_link_libraries(gl_test_batch 
   ${CPM_LIBRARIES}
-  ${OPENGL_LIBRARIES})
+  ${OPENGL_LIBRARIES}
+  ${PTHREADS})
 
