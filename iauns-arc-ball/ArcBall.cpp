@@ -30,7 +30,7 @@
 /// \date   April 2013
 
 #include "../namespaces.h"
-#include "glm/glm.hpp"
+
 
 #include "ArcBall.h"
 

@@ -36,6 +36,12 @@
 
 #include "../namespaces.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace CPM_NAMESPACE {
 
 /// A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera
