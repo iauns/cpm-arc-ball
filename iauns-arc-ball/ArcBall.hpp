@@ -32,9 +32,7 @@
 #ifndef IAUNS_ARC_BALL_H
 #define IAUNS_ARC_BALL_H
 
-#include <cstdint>
-
-#include "../namespaces.h"
+#include <stdint.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>

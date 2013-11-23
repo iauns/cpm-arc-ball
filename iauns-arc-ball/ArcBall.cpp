@@ -29,10 +29,7 @@
 /// \author James Hughes
 /// \date   April 2013
 
-#include "../namespaces.h"
-
-
-#include "ArcBall.h"
+#include "ArcBall.hpp"
 
 namespace CPM_NAMESPACE {
 
@@ -94,14 +91,14 @@ void ArcBall::beginDrag(const glm::vec2& msc)
   mQDown      = mQNow;
 
   // Normal 'begin' code.
-  mVDown      = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
+  mVDown      = glm::vec3(mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f));
 }
 
 //------------------------------------------------------------------------------
 void ArcBall::drag(const glm::vec2& msc)
 {
   // Regular drag code to follow...
-  mVNow       = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
+  mVNow       = glm::vec3(mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f));
   mVSphereFrom= mouseOnSphere(mVDown);
   mVSphereTo  = mouseOnSphere(mVNow);
 

@@ -26,6 +26,10 @@ if (NOT EXISTS ${CPM_DIR}/CPM.cmake)
 endif()
 include(${CPM_DIR}/CPM.cmake)
 
+# ++ MODULE: Arc Ball
+CPM_AddModule("arc_ball"
+  SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
+
 # ++ MODULE: OpenGL Context Creator
 CPM_AddModule("gl_context"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-context"
