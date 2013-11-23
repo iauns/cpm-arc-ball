@@ -37,13 +37,13 @@ CPM_AddModule("spire"
   GIT_TAG "origin/dev")
 
 # ++ MODULE: Spire testing
-CPM_AddModule("spire_testing",
-  GIT_REPOSITORY "https://github.com/iauns/cpm-spire-testing",
+CPM_AddModule("spire_testing"
+  GIT_REPOSITORY "https://github.com/iauns/cpm-spire-testing"
   GIT_TAG "origin/master")
 
 # ++ EXTERNAL-MODULE: Google Test
-CPM_AddModule("google_test",
-  GIT_REPOSITORY "https://github.com/iauns/cpm-google-test",
+CPM_AddModule("google_test"
+  GIT_REPOSITORY "https://github.com/iauns/cpm-google-test"
   GIT_TAG "origin/master")
 
 CPM_Finish()
@@ -52,6 +52,22 @@ CPM_Finish()
 # Copy appropriate shaders and assets
 #-----------------------------------------------------------------------
 CPM_GetSourceDir("spire_testing" SPIRE_TESTING_SOURCE_DIR)
+
+# Copy shaders.
+file(COPY ${SPIRE_TESTING_SOURCE_DIR}/shaders/
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/
+     FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+     DIRECTORY_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                           GROUP_READ
+                           WORLD_READ WORLD_EXECUTE)
+
+# Exported meshes.
+file(COPY ${SPIRE_TESTING_SOURCE_DIR}/assets/
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Assets
+     FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+     DIRECTORY_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                           GROUP_READ
+                           WORLD_READ WORLD_EXECUTE)
 
 #-----------------------------------------------------------------------
 # Configure OpenGL
