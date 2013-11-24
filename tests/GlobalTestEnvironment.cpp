@@ -2,6 +2,24 @@
 /// \date   November 2013
 
 #include "GlobalTestEnvironment.hpp"
+#include <gl-batch-env/BatchEnvironment.hpp>
 
 GlobalTestEnvironment* GlobalTestEnvironment::mInstance = nullptr;
+
+GlobalTestEnvironment::GlobalTestEnvironment()
+{
+  if (mInstance != nullptr)
+    throw std::runtime_error("Global test environment has already been constructed!");
+
+  mInstance = this;
+  mEnvironment = std::shared_ptr<CPM_GL_BATCH_ENV_NS::BatchEnvironment>(
+      new CPM_GL_BATCH_ENV_NS::BatchEnvironment(640, 480, 32, 24, 0, true, false));
+}
+
+GlobalTestEnvironment* GlobalTestEnvironment::instance()
+{
+  if (mInstance == nullptr)
+    throw std::runtime_error("Global test environment not initialized!");
+  return mInstance;
+}
 
