@@ -6,6 +6,17 @@ endif()
 
 project(ArcBallTest)
 
+#-----------------------------------------------------------------------
+# C++11
+#-----------------------------------------------------------------------
+if (UNIX)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+  if (APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++")
+  endif ()
+endif ()
+
 #------------------------------------------------------------------------------
 # Required CPM Setup - See: http://github.com/iauns/cpm
 #------------------------------------------------------------------------------
@@ -35,6 +46,11 @@ CPM_AddModule("gl_context"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-context"
   GIT_TAG "v1.0.0")
 
+# ++ MODULE: OpenGL Batch Environment
+CPM_AddModule("gl_batch_env"
+  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-env"
+  GIT_TAG "v1.0.0")
+
 # ++ MODULE: Spire
 CPM_AddModule("spire"
   GIT_REPOSITORY "https://github.com/SCIInstitute/spire"
@@ -48,7 +64,7 @@ CPM_AddModule("spire_testing"
 # ++ EXTERNAL-MODULE: Google Test
 CPM_AddModule("google_test"
   GIT_REPOSITORY "https://github.com/iauns/cpm-google-test"
-  GIT_TAG "v1.7.0")
+  GIT_TAG "1.7.1")
 
 CPM_Finish()
 
@@ -107,9 +123,8 @@ if (UNIX)
   endif()
 endif()
 
-add_executable(gl_test_batch ${Sources})
-
-target_link_libraries(gl_test_batch 
+add_executable(arc_ball_test ${Sources})
+target_link_libraries(arc_ball_test 
   ${CPM_LIBRARIES}
   ${OPENGL_LIBRARIES}
   ${PTHREADS})

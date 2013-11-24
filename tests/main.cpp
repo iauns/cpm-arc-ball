@@ -1,14 +1,19 @@
 
 #include <cstdlib>
 #include <iostream>
-#include "gtest/gtest.h"
+#include <exception>
+#include <memory>
 
-#include "gl-batch-context/Context.hpp"
+#include <gtest/gtest.h>
+#include <spire/Interface.h>
 
-/// \todo Use lodepng to write png files. It's small and we can easily
-///       create a CPM external for it.
+#include "GlobalTestEnvironment.hpp"
+
 int main(int argc, char** argv)
 {
+  // Add a global test environment that initializes an OpenGL batch renderer.
+  ::testing::AddGlobalTestEnvironment(new GlobalTestEnvironment());
+
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
