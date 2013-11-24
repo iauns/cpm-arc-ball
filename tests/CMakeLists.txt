@@ -44,12 +44,12 @@ CPM_AddModule("arc_ball"
 # ++ MODULE: OpenGL Context Creator
 CPM_AddModule("gl_context"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-context"
-  GIT_TAG "v1.0.0")
+  GIT_TAG "1.0.0")
 
 # ++ MODULE: OpenGL Batch Environment
 CPM_AddModule("gl_batch_env"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-env"
-  GIT_TAG "v1.0.0")
+  GIT_TAG "1.0.0")
 
 # ++ MODULE: Spire
 CPM_AddModule("spire"
@@ -59,12 +59,12 @@ CPM_AddModule("spire"
 # ++ MODULE: Spire testing
 CPM_AddModule("spire_testing"
   GIT_REPOSITORY "https://github.com/iauns/cpm-spire-testing"
-  GIT_TAG "origin/master")
+  GIT_TAG "1.0.0")
 
 # ++ EXTERNAL-MODULE: Google Test
 CPM_AddModule("google_test"
   GIT_REPOSITORY "https://github.com/iauns/cpm-google-test"
-  GIT_TAG "origin/master")
+  GIT_TAG "1.0.0")
 
 CPM_Finish()
 
