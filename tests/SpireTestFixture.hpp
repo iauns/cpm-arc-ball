@@ -5,9 +5,9 @@
 #ifndef IAUNS_SPIREFIXTURE_HPP
 #define IAUNS_SPIREFIXTURE_HPP
 
+#include <gtest/gtest.h>
 #include <gl-batch-env/BatchEnvironment.hpp>
 #include <spire/Interface.h>
-#include <gtest/gtest.h>
 
 #include "GlobalTestEnvironment.hpp"
 
