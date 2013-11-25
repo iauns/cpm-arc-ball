@@ -49,7 +49,7 @@ CPM_AddModule("gl_context"
 # ++ MODULE: OpenGL Batch Environment
 CPM_AddModule("gl_batch_env"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-env"
-  GIT_TAG "1.0.0")
+  GIT_TAG "1.0.1")
 
 # ++ MODULE: Spire
 CPM_AddModule("spire"
