@@ -20,7 +20,7 @@ private:
 class SpireTestFixture : public testing::Test
 {
 public:
-  InterfaceTestFixture () {}
+  InterfaceTestFixture() {}
 
   virtual void SetUp() override
   {
@@ -28,10 +28,14 @@ public:
     shaderSearchDirs.push_back("shaders");
 
     // Build spire using the context from GlobalTestEnvironment.
-    std::shared_ptr<spire::Context> ctx = GlobalTestEnvironment::instance()->getContext();
+    std::shared_ptr<CPM_GL_BATCH_ENV_NS::BatchEnvironment> ctx 
+        = GlobalTestEnvironment::instance()->getBatchEnvironment();
+
+    mSpireContext = std::shared_ptr<SpireContext>(ctx);
+
     ctx->makeCurrent();
-    mSpire = std::shared_ptr<spire::Interface>(new spire::Interface(
-        ctx, shaderSearchDirs));
+    mSpire = std::shared_ptr<CPM_SPIRE_NS::Interface>(
+        new CPM_SPIRE_NS::Interface(mSpireContext, shaderSearchDirs));
 
     // Add default attributes.
     addDefaultAttributes();
@@ -43,21 +47,26 @@ public:
   virtual void TearDown() override
   {
     mSpire.reset();
+    mSpireContext.reset();
   }
 
   void addDefaultAttributes()
   {
-    mSpire->addShaderAttribute("aPos",         3,  false,  sizeof(float) * 3,  spire::Interface::TYPE_FLOAT);
-    mSpire->addShaderAttribute("aNormal",      3,  false,  sizeof(float) * 3,  spire::Interface::TYPE_FLOAT);
-    mSpire->addShaderAttribute("aColorFloat",  4,  false,  sizeof(float) * 4,  spire::Interface::TYPE_FLOAT);
-    mSpire->addShaderAttribute("aColor",       4,  true,   sizeof(char) * 4,   spire::Interface::TYPE_UBYTE);
+    mSpire->addShaderAttribute("aPos",         3,  false,  sizeof(float) * 3,  CPM_SPIRE_NS::Interface::TYPE_FLOAT);
+    mSpire->addShaderAttribute("aNormal",      3,  false,  sizeof(float) * 3,  CPM_SPIRE_NS::Interface::TYPE_FLOAT);
+    mSpire->addShaderAttribute("aColorFloat",  4,  false,  sizeof(float) * 4,  CPM_SPIRE_NS::Interface::TYPE_FLOAT);
+    mSpire->addShaderAttribute("aColor",       4,  true,   sizeof(char) * 4,   CPM_SPIRE_NS::Interface::TYPE_UBYTE);
 
     // Used to test attribute mis-alignment.
-    mSpire->addShaderAttribute("aFieldData",   1,  false,  sizeof(float) * 1,  spire::Interface::TYPE_FLOAT);
+    mSpire->addShaderAttribute("aFieldData",   1,  false,  sizeof(float) * 1,  CPM_SPIRE_NS::Interface::TYPE_FLOAT);
   }
 
-  std::shared_ptr<spire::Interface>     mSpire;
-  std::unique_ptr<TestCamera>           mCamera;
+  std::shared_ptr<CPM_SPIRE_NS::Interface>    mSpire;
+  std::unique_ptr<TestCamera>                 mCamera;
+
+private:
+
+  std::shared_ptr<SpireContext>         mSpireContext;
 };
 
 #endif 
