@@ -44,7 +44,7 @@ CPM_AddModule("arc_ball"
 # ++ MODULE: OpenGL Batch Environment
 CPM_AddModule("gl_batch_env"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-env"
-  GIT_TAG "origin/master")
+  GIT_TAG "1.1.0")
 
 # ++ MODULE: Spire
 CPM_AddModule("spire"
