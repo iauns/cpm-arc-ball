@@ -59,7 +59,8 @@ CPM_AddModule("spire_testing"
 # ++ EXTERNAL-MODULE: Google Test
 CPM_AddModule("google_test"
   GIT_REPOSITORY "https://github.com/iauns/cpm-google-test"
-  GIT_TAG "1.0.0")
+  GIT_TAG "1.0.0"
+  USE_EXISTING_VER TRUE)
 
 CPM_Finish()
 
