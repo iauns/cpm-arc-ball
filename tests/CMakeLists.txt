@@ -135,6 +135,11 @@ if (UNIX)
   endif()
 endif()
 
+# Make sure we don't link against OpenGL libraries if using OSMesa
+if (USE_OS_MESA)
+  set(OPENGL_LIBRARIES)
+endif()
+
 add_executable(arc_ball_test ${Sources})
 target_link_libraries(arc_ball_test 
   ${CPM_LIBRARIES}
