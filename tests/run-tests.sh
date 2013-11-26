@@ -11,6 +11,6 @@ set -e
 pushd ./bin > /dev/null
   cmake -DUSE_OS_MESA=ON ..
   make
+  ./arc_ball_test
 popd
 
-./bin/arc_ball_test

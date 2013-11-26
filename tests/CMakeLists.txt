@@ -103,6 +103,23 @@ if(APPLE)
 endif()
 
 #-----------------------------------------------------------------------
+# Regression directory setup
+#-----------------------------------------------------------------------
+
+set(REGRESSION_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/regression")
+CPM_EnsureRepoIsCurrent(
+  TARGET_DIR ${REGRESSION_DATA_DIR}
+  GIT_REPOSITORY "git://github.com/iauns-tests/cpm-arc-ball"
+  GIT_TAG "origin/master"
+  )
+
+add_definitions(-DTEST_OUTPUT_IMAGES)
+add_definitions(-DTEST_IMAGE_OUTPUT_DIR="${REGRESSION_DATA_DIR}/output")
+add_definitions(-DTEST_IMAGE_COMPARE_DIR="${REGRESSION_DATA_DIR}/verified")
+add_definitions(-DTEST_PERCEPTUAL_COMPARE)
+add_definitions(-DTEST_PERCEPTUAL_COMPARE_BINARY="perceptualdiff")
+
+#-----------------------------------------------------------------------
 # Setup source
 #-----------------------------------------------------------------------
 # Setup spire test sources. Even though this is a batch renderer, this is

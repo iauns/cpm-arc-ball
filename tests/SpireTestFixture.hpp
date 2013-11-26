@@ -31,11 +31,12 @@ public:
   virtual void SetUp() override;
   virtual void TearDown() override;
 
-  void addDefaultAttributes();
+  void beginFrame();
 
   std::shared_ptr<CPM_SPIRE_NS::Interface>    mSpire;
 
 private:
+  void addDefaultAttributes();
 
   std::shared_ptr<SpireContext>         mSpireContext;
 };
