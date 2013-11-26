@@ -40,7 +40,7 @@
 #include <glm/gtc/matrix_inverse.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace CPM_NAMESPACE {
+namespace CPM_ARC_BALL_NS {
 
 /// A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera
 /// system is based off of Ken's code. The Code appears in Graphics Gems 4, 
@@ -127,6 +127,6 @@ private:
   glm::mat4   mScreenToTCS;
 };
 
-} // namespace CPM_NAMESPACE
+} // namespace CPM_ARC_BALL_NS 
 
 #endif

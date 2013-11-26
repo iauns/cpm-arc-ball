@@ -31,7 +31,7 @@
 
 #include "ArcBall.hpp"
 
-namespace CPM_NAMESPACE {
+namespace CPM_ARC_BALL_NS {
 
 //------------------------------------------------------------------------------
 ArcBall::ArcBall(const glm::vec3& center, float radius, const glm::mat4& screenToTCS) :

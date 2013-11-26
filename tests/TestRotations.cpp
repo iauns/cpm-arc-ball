@@ -4,6 +4,8 @@
 #include "GlobalTestEnvironment.hpp"
 #include "SpireTestFixture.hpp"
 #include <spire/src/FileUtil.h>
+#include <spire/src/GLMathUtil.h>
+#include <arc-ball/ArcBall.hpp>
 
 void compareFBOWithExistingFile(const std::string& filename)
 {
@@ -100,26 +102,101 @@ TEST_F(SpireTestFixture, TestQuadRotation)
       });
   mSpire->addPassToObject(obj1, shader1, vbo1, ibo1, CPM_SPIRE_NS::Interface::TRIANGLE_STRIP);
 
-  float aspect = static_cast<float>(640) / static_cast<float>(480);
-  glm::mat4 projection = glm::perspective(0.59f, aspect, 1.0f, 2000.0f);
-
-  glm::mat4 cam;
-  cam[3] = glm::vec4(0.0f, 0.0f, 5.0f, 1.0f);
-
-  glm::mat4 ivp = projection * glm::affineInverse(cam);
-
-  mSpire->addObjectGlobalUniform(obj1, "uProjIVObject", ivp);
-
   mSpire->removeIBO(ibo1);
   mSpire->removeVBO(vbo1);
 
   mSpire->addObjectPassUniform(obj1, "uColor", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
-  // Clear the frame and compare the object.
-  beginFrame();
-  mSpire->renderObject(obj1);
+  // Build projection matrix
+  float aspect = static_cast<float>(640) / static_cast<float>(480);
+  glm::mat4 projection = glm::perspective(0.59f, aspect, 1.0f, 2000.0f);
 
-  // Compare FBO with existing file.
-  //compareFBOWithExistingFile("noRotation.png");
+  glm::mat4 cam;
+  glm::mat4 ivp;
+  glm::vec4 translation = glm::vec4(0.0f, 0.0f, 5.0f, 1.0f);
+  float zDist = 5.0f;
+
+  // Construct first 'no rotation'.
+  {
+    cam[3] = translation;
+    ivp = projection * glm::affineInverse(cam);
+    mSpire->addObjectGlobalUniform(obj1, "uProjIVObject", ivp);
+
+    beginFrame();
+    mSpire->renderObject(obj1);
+    compareFBOWithExistingFile("noRotation.png");
+  }
+
+  // Build first rotation about the y axis.
+  {
+    CPM_ARC_BALL_NS::ArcBall arcball(glm::vec3(0.0f, 0.0f, 0.0f), 0.9f);
+    glm::vec2 centerSS(0.0f, 0.0f);   // center screen space.
+    glm::vec2 rightSS(0.25f, 0.0f);   // far left
+    arcball.beginDrag(centerSS);
+    arcball.drag(rightSS);
+    glm::mat4 camRot = arcball.getTransformation();
+
+    camRot[3].xyz() = glm::vec3(camRot[2].xyz()) * zDist;
+    ivp = projection * glm::affineInverse(camRot);
+    mSpire->addObjectGlobalUniform(obj1, "uProjIVObject", ivp);
+
+    beginFrame();
+    mSpire->renderObject(obj1);
+    compareFBOWithExistingFile("rotRight_Centered.png");
+  }
+
+  // Build second rotation about the y axis.
+  {
+    CPM_ARC_BALL_NS::ArcBall arcball(glm::vec3(0.0f, 0.0f, 0.0f), 0.9f);
+    glm::vec2 centerSS(0.0f, 0.0f);   // center screen space.
+    glm::vec2 rightSS(-0.25f, 0.0f);   // far left
+    arcball.beginDrag(centerSS);
+    arcball.drag(rightSS);
+    glm::mat4 camRot = arcball.getTransformation();
+
+    camRot[3].xyz() = glm::vec3(camRot[2].xyz()) * zDist;
+    ivp = projection * glm::affineInverse(camRot);
+    mSpire->addObjectGlobalUniform(obj1, "uProjIVObject", ivp);
+
+    beginFrame();
+    mSpire->renderObject(obj1);
+    compareFBOWithExistingFile("rotLeft_Centered.png");
+  }
+
+  // Build first rotation about the x axis.
+  {
+    CPM_ARC_BALL_NS::ArcBall arcball(glm::vec3(0.0f, 0.0f, 0.0f), 0.9f);
+    glm::vec2 centerSS(0.0f, 0.0f);   // center screen space.
+    glm::vec2 rightSS(0.0f, 0.35f);   
+    arcball.beginDrag(centerSS);
+    arcball.drag(rightSS);
+    glm::mat4 camRot = arcball.getTransformation();
+
+    camRot[3].xyz() = glm::vec3(camRot[2].xyz()) * zDist;
+    ivp = projection * glm::affineInverse(camRot);
+    mSpire->addObjectGlobalUniform(obj1, "uProjIVObject", ivp);
+
+    beginFrame();
+    mSpire->renderObject(obj1);
+    compareFBOWithExistingFile("rotUp_Centered.png");
+  }
+
+  // Build first rotation about the x axis.
+  {
+    CPM_ARC_BALL_NS::ArcBall arcball(glm::vec3(0.0f, 0.0f, 0.0f), 0.9f);
+    glm::vec2 centerSS(0.0f, 0.0f);   // center screen space.
+    glm::vec2 rightSS(0.0f, -0.35f);   
+    arcball.beginDrag(centerSS);
+    arcball.drag(rightSS);
+    glm::mat4 camRot = arcball.getTransformation();
+
+    camRot[3].xyz() = glm::vec3(camRot[2].xyz()) * zDist;
+    ivp = projection * glm::affineInverse(camRot);
+    mSpire->addObjectGlobalUniform(obj1, "uProjIVObject", ivp);
+
+    beginFrame();
+    mSpire->renderObject(obj1);
+    compareFBOWithExistingFile("rotDown_Centered.png");
+  }
 }
 
