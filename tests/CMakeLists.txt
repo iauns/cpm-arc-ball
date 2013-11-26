@@ -6,7 +6,7 @@ endif()
 
 project(ArcBallTest)
 
-set(USE_OS_MESA TRUE)
+option(USE_OS_MESA "Use an OS mesa context." ON)
 
 #-----------------------------------------------------------------------
 # C++11
