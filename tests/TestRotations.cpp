@@ -42,7 +42,7 @@ void compareFBOWithExistingFile(const std::string& filename)
 #endif
 }
 
-TEST_F(SpireTestFixture, TestRenderingWithSR5Object)
+TEST_F(SpireTestFixture, TestQuadRotation)
 {
   // Test various functions in Object and ObjectPass.
   std::vector<float> vboData = 

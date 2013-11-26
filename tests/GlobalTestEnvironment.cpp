@@ -13,7 +13,7 @@ GlobalTestEnvironment::GlobalTestEnvironment()
 
   mInstance = this;
   mEnvironment = std::shared_ptr<CPM_GL_BATCH_ENV_NS::BatchEnvironment>(
-      new CPM_GL_BATCH_ENV_NS::BatchEnvironment(640, 480, 32, 24, 0, true, false));
+      new CPM_GL_BATCH_ENV_NS::BatchEnvironment(600, 600, 32, 24, 8, true, false));
 }
 
 GlobalTestEnvironment* GlobalTestEnvironment::instance()

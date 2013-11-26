@@ -6,8 +6,6 @@ endif()
 
 project(ArcBallTest)
 
-option(USE_OS_MESA "Use an OS mesa context." ON)
-
 #-----------------------------------------------------------------------
 # C++11
 #-----------------------------------------------------------------------
@@ -43,15 +41,10 @@ include(${CPM_DIR}/CPM.cmake)
 CPM_AddModule("arc_ball"
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
-# ++ MODULE: OpenGL Context Creator
-CPM_AddModule("gl_context"
-  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-context"
-  GIT_TAG "1.0.0")
-
 # ++ MODULE: OpenGL Batch Environment
 CPM_AddModule("gl_batch_env"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-env"
-  GIT_TAG "1.0.1")
+  GIT_TAG "origin/master")
 
 # ++ MODULE: Spire
 CPM_AddModule("spire"
@@ -77,7 +70,7 @@ CPM_GetSourceDir(SPIRE_TESTING_SOURCE_DIR "spire_testing")
 
 # Copy shaders.
 file(COPY ${SPIRE_TESTING_SOURCE_DIR}/shaders/
-     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/shaders
      FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
      DIRECTORY_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
                            GROUP_READ

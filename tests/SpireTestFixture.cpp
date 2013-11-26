@@ -32,16 +32,15 @@ void SpireContext::swapBuffers()
 //------------------------------------------------------------------------------
 void SpireTestFixture::SetUp()
 {
-  std::vector<std::string> shaderSearchDirs;
-  shaderSearchDirs.push_back("shaders");
-
   // Build spire using the context from GlobalTestEnvironment.
   std::shared_ptr<CPM_GL_BATCH_ENV_NS::BatchEnvironment> ctx 
       = GlobalTestEnvironment::instance()->getBatchEnvironment();
+  ctx->makeCurrent();
+
+  std::vector<std::string> shaderSearchDirs;
+  shaderSearchDirs.push_back("shaders");
 
   mSpireContext = std::shared_ptr<SpireContext>(new SpireContext(ctx));
-
-  ctx->makeCurrent();
   mSpire = std::shared_ptr<CPM_SPIRE_NS::Interface>(
       new CPM_SPIRE_NS::Interface(mSpireContext, shaderSearchDirs));
 
