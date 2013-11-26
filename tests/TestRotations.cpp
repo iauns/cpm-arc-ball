@@ -29,7 +29,7 @@ void compareFBOWithExistingFile(const std::string& filename)
     // Test using perceptula comparison program that the user has provided
     // (hopefully).
     std::string command = TEST_PERCEPTUAL_COMPARE_BINARY;
-    command += " -threshold 50 ";
+    command += " -threshold 400 ";
     command += targetImage + " " + compImage;
 
     // Usually the return code of std::system is implementation specific. But the
