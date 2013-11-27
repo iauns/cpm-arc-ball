@@ -10,7 +10,7 @@ set -e
 
 pushd ./bin > /dev/null
   cmake -DUSE_OS_MESA=ON ..
-  VERBOSE=1 make -j4
+  make -j4
   ./arc_ball_test
 popd
 
