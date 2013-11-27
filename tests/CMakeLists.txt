@@ -41,14 +41,9 @@ include(${CPM_DIR}/CPM.cmake)
 CPM_AddModule("arc_ball"
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
-# ++ MODULE: Spire
+# ++ MODULE: batch_testing
 CPM_AddModule("batch_testing"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-testing"
-  GIT_TAG "origin/master")
-
-# ++ MODULE: Spire
-CPM_AddModule("spire"
-  GIT_REPOSITORY "https://github.com/SCIInstitute/spire"
   GIT_TAG "origin/master")
 
 # ++ EXTERNAL-MODULE: Google Test
