@@ -105,7 +105,7 @@ endif()
 set(REGRESSION_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/regression")
 CPM_EnsureRepoIsCurrent(
   TARGET_DIR ${REGRESSION_DATA_DIR}
-  GIT_REPOSITORY "git://github.com/iauns-tests/cpm-arc-ball"
+  GIT_REPOSITORY "https://github.com/iauns-tests/cpm-arc-ball"
   GIT_TAG "origin/master"
   )
 
