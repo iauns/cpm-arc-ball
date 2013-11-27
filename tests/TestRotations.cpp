@@ -1,48 +1,12 @@
 /// \author James Hughes
 /// \date   November 2013
 
-#include "GlobalTestEnvironment.hpp"
-#include "SpireTestFixture.hpp"
-#include <spire/src/FileUtil.h>
-#include <spire/src/GLMathUtil.h>
+#include <batch-testing/GlobalGTestEnv.hpp>
+#include <batch-testing/SpireTestFixture.hpp>
+
 #include <arc-ball/ArcBall.hpp>
 
-void compareFBOWithExistingFile(const std::string& filename)
-{
-  // Print out the frame and compare it.
-#ifdef TEST_OUTPUT_IMAGES
-  {
-    std::string imageName = filename;
-
-    std::string targetImage = TEST_IMAGE_OUTPUT_DIR;
-    targetImage += "/" + imageName;
-    GlobalTestEnvironment::instance()->getBatchEnvironment()->writeFBO(targetImage);
-
-    EXPECT_TRUE(CPM_SPIRE_NS::fileExists(targetImage)) << "Failed to write output image! " << targetImage;
-
-#ifdef TEST_PERCEPTUAL_COMPARE
-    // Perform the perceptual comparison using the given regression directory.
-    std::string compImage = TEST_IMAGE_COMPARE_DIR;
-    compImage += "/" + imageName;
-
-    ASSERT_TRUE(CPM_SPIRE_NS::fileExists(compImage)) << "Failed to find comparison image! " << compImage;
-    // Test using perceptula comparison program that the user has provided
-    // (hopefully).
-    std::string command = TEST_PERCEPTUAL_COMPARE_BINARY;
-    command += " -threshold 400 ";
-    command += targetImage + " " + compImage;
-
-    // Usually the return code of std::system is implementation specific. But the
-    // majority of systems end up returning the exit code of the program.
-    if (std::system(command.c_str()) != 0)
-    {
-      // The images are NOT the same. Alert the user.
-      FAIL() << "Perceptual compare of " << imageName << " failed.";
-    }
-#endif
-  }
-#endif
-}
+using namespace CPM_BATCH_TESTING_NS;
 
 TEST_F(SpireTestFixture, TestQuadRotation)
 {
@@ -124,7 +88,11 @@ TEST_F(SpireTestFixture, TestQuadRotation)
 
     beginFrame();
     mSpire->renderObject(obj1);
-    compareFBOWithExistingFile("noRotation.png");
+    compareFBOWithExistingFile("noRotation.png",
+                               TEST_IMAGE_OUTPUT_DIR,
+                               TEST_IMAGE_COMPARE_DIR,
+                               TEST_PERCEPTUAL_COMPARE_BINARY,
+                               300);
   }
 
   // Build first rotation about the y axis.
@@ -142,7 +110,11 @@ TEST_F(SpireTestFixture, TestQuadRotation)
 
     beginFrame();
     mSpire->renderObject(obj1);
-    compareFBOWithExistingFile("rotRight_Centered.png");
+    compareFBOWithExistingFile("rotRight_Centered.png",
+                               TEST_IMAGE_OUTPUT_DIR,
+                               TEST_IMAGE_COMPARE_DIR,
+                               TEST_PERCEPTUAL_COMPARE_BINARY,
+                               300);
   }
 
   // Build second rotation about the y axis.
@@ -160,7 +132,11 @@ TEST_F(SpireTestFixture, TestQuadRotation)
 
     beginFrame();
     mSpire->renderObject(obj1);
-    compareFBOWithExistingFile("rotLeft_Centered.png");
+    compareFBOWithExistingFile("rotLeft_Centered.png",
+                               TEST_IMAGE_OUTPUT_DIR,
+                               TEST_IMAGE_COMPARE_DIR,
+                               TEST_PERCEPTUAL_COMPARE_BINARY,
+                               300);
   }
 
   // Build first rotation about the x axis.
@@ -178,7 +154,11 @@ TEST_F(SpireTestFixture, TestQuadRotation)
 
     beginFrame();
     mSpire->renderObject(obj1);
-    compareFBOWithExistingFile("rotUp_Centered.png");
+    compareFBOWithExistingFile("rotUp_Centered.png",
+                               TEST_IMAGE_OUTPUT_DIR,
+                               TEST_IMAGE_COMPARE_DIR,
+                               TEST_PERCEPTUAL_COMPARE_BINARY,
+                               300);
   }
 
   // Build first rotation about the x axis.
@@ -196,7 +176,11 @@ TEST_F(SpireTestFixture, TestQuadRotation)
 
     beginFrame();
     mSpire->renderObject(obj1);
-    compareFBOWithExistingFile("rotDown_Centered.png");
+    compareFBOWithExistingFile("rotDown_Centered.png",
+                               TEST_IMAGE_OUTPUT_DIR,
+                               TEST_IMAGE_COMPARE_DIR,
+                               TEST_PERCEPTUAL_COMPARE_BINARY,
+                               300);
   }
 }
 

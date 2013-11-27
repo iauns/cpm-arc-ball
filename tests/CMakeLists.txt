@@ -41,20 +41,15 @@ include(${CPM_DIR}/CPM.cmake)
 CPM_AddModule("arc_ball"
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
-# ++ MODULE: OpenGL Batch Environment
-CPM_AddModule("gl_batch_env"
-  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-env"
-  GIT_TAG "1.1.0")
+# ++ MODULE: Spire
+CPM_AddModule("batch_testing"
+  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-testing"
+  GIT_TAG "origin/master")
 
 # ++ MODULE: Spire
 CPM_AddModule("spire"
   GIT_REPOSITORY "https://github.com/SCIInstitute/spire"
-  GIT_TAG "origin/dev")
-
-# ++ MODULE: Spire testing
-CPM_AddModule("spire_testing"
-  GIT_REPOSITORY "https://github.com/iauns/cpm-spire-testing"
-  GIT_TAG "1.0.0")
+  GIT_TAG "origin/master")
 
 # ++ EXTERNAL-MODULE: Google Test
 CPM_AddModule("google_test"
@@ -67,7 +62,7 @@ CPM_Finish()
 #-----------------------------------------------------------------------
 # Copy appropriate shaders and assets
 #-----------------------------------------------------------------------
-CPM_GetSourceDir(SPIRE_TESTING_SOURCE_DIR "spire_testing")
+CPM_GetSourceDir(SPIRE_TESTING_SOURCE_DIR "batch_testing")
 
 # Copy shaders.
 file(COPY ${SPIRE_TESTING_SOURCE_DIR}/shaders/
