@@ -135,5 +135,5 @@ glm::mat4 ArcBall::getTransformation() const
 }
 
 
-} // namespace CPM_NAMESPACE
+} // namespace CPM_ARC_BALL_NS
 
