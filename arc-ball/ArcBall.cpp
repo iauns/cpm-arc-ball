@@ -91,14 +91,14 @@ void ArcBall::beginDrag(const glm::vec2& msc)
   mQDown      = mQNow;
 
   // Normal 'begin' code.
-  mVDown      = glm::vec3(mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f));
+  mVDown      = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
 }
 
 //------------------------------------------------------------------------------
 void ArcBall::drag(const glm::vec2& msc)
 {
   // Regular drag code to follow...
-  mVNow       = glm::vec3(mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f));
+  mVNow       = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
   mVSphereFrom= mouseOnSphere(mVDown);
   mVSphereTo  = mouseOnSphere(mVNow);
 
