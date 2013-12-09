@@ -3,15 +3,15 @@
 namespace CPM_ARC_BALL_NS {
 
 //------------------------------------------------------------------------------
-ArcBall::ArcBall(const glm::vec3& center, float radius, const glm::mat4& screenToTCS) :
+ArcBall::ArcBall(const glm::vec3& center, glm::float_t radius, const glm::mat4& screenToTCS) :
     mCenter(center),
     mRadius(radius),
     mScreenToTCS(screenToTCS)
 {
   // glm uses the following format for quaternions: w,x,y,z.
   //        w,    x,    y,    z
-  glm::quat qOne(1.0f, 0.0f, 0.0f, 0.0f);
-  glm::vec3 vZero(0.0f, 0.0f, 0.0f);
+  glm::quat qOne(1.0, 0.0, 0.0, 0.0);
+  glm::vec3 vZero(0.0, 0.0, 0.0);
 
   mVDown    = vZero;
   mVNow     = vZero;
@@ -33,20 +33,20 @@ glm::vec3 ArcBall::mouseOnSphere(const glm::vec3& tscMouse)
   ballMouse.x = (tscMouse.x - mCenter.x) / mRadius;
   ballMouse.y = (tscMouse.y - mCenter.y) / mRadius;
 
-  float mag = glm::dot(ballMouse, ballMouse);
-  if (mag > 1.0f)
+  glm::float_t mag = glm::dot(ballMouse, ballMouse);
+  if (mag > 1.0)
   {
     // Since we are outside of the sphere, map to the visible boundary of
     // the sphere.
-    ballMouse *= 1.0f / sqrtf(mag);
-    ballMouse.z = 0.0f;
+    ballMouse *= 1.0 / sqrtf(mag);
+    ballMouse.z = 0.0;
   }
   else
   {
     // We are not at the edge of the sphere, we are inside of it.
     // Essentially, we are normalizing the vector by adding the missing z
     // component.
-    ballMouse.z = sqrtf(1.0f - mag);
+    ballMouse.z = sqrtf(1.0 - mag);
   }
 
   return ballMouse;
@@ -60,14 +60,14 @@ void ArcBall::beginDrag(const glm::vec2& msc)
   mQDown      = mQNow;
 
   // Normal 'begin' code.
-  mVDown      = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
+  mVDown      = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0)).xyz();
 }
 
 //------------------------------------------------------------------------------
 void ArcBall::drag(const glm::vec2& msc)
 {
   // Regular drag code to follow...
-  mVNow       = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0f, 1.0f)).xyz();
+  mVNow       = (mScreenToTCS * glm::vec4(msc.x, msc.y, 0.0, 1.0)).xyz();
   mVSphereFrom= mouseOnSphere(mVDown);
   mVSphereTo  = mouseOnSphere(mVNow);
 
