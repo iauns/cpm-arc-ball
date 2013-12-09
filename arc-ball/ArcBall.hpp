@@ -45,21 +45,14 @@ namespace CPM_ARC_BALL_NS {
 /// A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera
 /// system is based off of Ken's code. The Code appears in Graphics Gems 4, 
 /// III.1.
-/// 
 /// Unless specified otherwise, all calculations and variables stored in this
 /// class are relative to the target coordinate system (TCS) for which there is
 /// a transformation from screen space to TCS given by the screenToTCS
 /// constructor parameter.
-///
 /// If the screenToTCS parameter in the constructor is left as the identity
 /// matrix then all values are given in screen coordinates.
 /// Screen coordinates are (x \in [-1,1]) and (y \in [-1,1]) where (0,0) is the
 /// center of the screen.
-/// \todo Extend this class to include Mouse screen coords -> object space
-///       calculations. That way we can rotate around a particular object.
-///       May also want to visually represent the sphere when we perform this
-///       calculation.
-/// \todo Provide method of setting the default orientation of the object.
 class ArcBall
 {
 public:
@@ -103,9 +96,6 @@ private:
   glm::vec3   mCenter;        ///< Center of the arcball in target coordinate system.
   float       mRadius;        ///< Radius of the arcball in target coordinate system.
 
-  /// \note Both mQNow and mQDown would need to be updated if we allowed
-  ///       default transformations.
-
   glm::quat mQNow;            ///< Current state of the rotation taking into account mouse.
                               ///< Essentially QDrag * QDown (QDown is a applied first, just
                               ///< as in matrix multiplication).
@@ -119,9 +109,6 @@ private:
   glm::vec3   mVSphereTo;     ///< vNow mapped to the sphere of 'mRadius' centered at 'mCenter' in TCS.
 
   glm::mat4   mMatNow;        ///< Matrix representing the current rotation.
-
-  /// \todo Add in constraint sets (you can display handles and constrain
-  ///       rotations along those handles).
 
   /// Transform from screen coordinates to the target coordinate system.
   glm::mat4   mScreenToTCS;
