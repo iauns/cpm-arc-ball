@@ -96,11 +96,11 @@ private:
   glm::vec3   mCenter;        ///< Center of the arcball in target coordinate system.
   float       mRadius;        ///< Radius of the arcball in target coordinate system.
 
-  glm::quat mQNow;            ///< Current state of the rotation taking into account mouse.
+  glm::quat   mQNow;          ///< Current state of the rotation taking into account mouse.
                               ///< Essentially QDrag * QDown (QDown is a applied first, just
                               ///< as in matrix multiplication).
-  glm::quat mQDown;           ///< State of the rotation since mouse down.
-  glm::quat mQDrag;           ///< Dragged transform. Knows nothing of any prior 
+  glm::quat   mQDown;         ///< State of the rotation since mouse down.
+  glm::quat   mQDrag;         ///< Dragged transform. Knows nothing of any prior 
                               ///< transformations.
 
   glm::vec3   mVNow;          ///< Most current TCS position of mouse (during drag).

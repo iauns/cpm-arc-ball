@@ -102,8 +102,6 @@ void ArcBall::drag(const glm::vec2& msc)
   mVSphereFrom= mouseOnSphere(mVDown);
   mVSphereTo  = mouseOnSphere(mVNow);
 
-  /// \todo Perform constraints here.
-
   // Construct a quaternion from two points on the unit sphere.
   mQDrag = quatFromUnitSphere(mVSphereFrom, mVSphereTo); 
   mQNow = mQDrag * mQDown;
