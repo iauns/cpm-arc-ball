@@ -65,12 +65,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html#a024bc0d072f17c7be92495f1194c3d39">getTransformation</a> () const </td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera system is based off of Ken's code. The Code appears in Graphics Gems 4, III.1.</p>
-<p>Unless specified otherwise, all calculations and variables stored in this class are relative to the target coordinate system (TCS) for which there is a transformation from screen space to TCS given by the screenToTCS constructor parameter.</p>
-<p>If the screenToTCS parameter in the constructor is left as the identity matrix then all values are given in screen coordinates. Screen coordinates are (x  [-1,1]) and (y  [-1,1]) where (0,0) is the center of the screen. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><p class="startdd">Extend this class to include Mouse screen coords -&gt; object space calculations. That way we can rotate around a particular object. May also want to visually represent the sphere when we perform this calculation. </p>
-<p class="enddd">Provide method of setting the default orientation of the object. </p>
-</dd></dl>
+<div class="textblock"><p>A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera system is based off of Ken's code. The Code appears in Graphics Gems 4, III.1. Unless specified otherwise, all calculations and variables stored in this class are relative to the target coordinate system (TCS) for which there is a transformation from screen space to TCS given by the screenToTCS constructor parameter. If the screenToTCS parameter in the constructor is left as the identity matrix then all values are given in screen coordinates. Screen coordinates are (x  [-1,1]) and (y  [-1,1]) where (0,0) is the center of the screen. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3a38b8d07a53a46244d3dca0948700bb"></a><!-- doxytag: member="CPM_ARC_BALL_NS::ArcBall::ArcBall" ref="a3a38b8d07a53a46244d3dca0948700bb" args="(const glm::vec3 &amp;center, float radius, const glm::mat4 &amp;screenToTCS=glm::mat4())" -->
 <div class="memitem">
@@ -188,7 +183,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 9 2013 18:16:10 for Arc Ball by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 9 2013 19:45:34 for Arc Ball by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
