@@ -59,7 +59,7 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html#a3a38b8d07a53a46244d3dca0948700bb">ArcBall</a> (const glm::vec3 &amp;center, float radius, const glm::mat4 &amp;screenToTCS=glm::mat4())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html#abcb3d4d2034a35448cf4639df68c440f">ArcBall</a> (const glm::vec3 &amp;center, glm::float_t radius, const glm::mat4 &amp;screenToTCS=glm::mat4())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html#af508311f1cbeb895f41cfb1b63ee428c">beginDrag</a> (const glm::vec2 &amp;mouseScreenCoords)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html#adbd7ccabaac6967453ec32440b6de24e">drag</a> (const glm::vec2 &amp;mouseScreenCoords)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html#a024bc0d072f17c7be92495f1194c3d39">getTransformation</a> () const </td></tr>
@@ -67,7 +67,7 @@ Public Member Functions</h2></td></tr>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A reimplementation of Ken Shoemake's arcball camera. SCIRun 4's camera system is based off of Ken's code. The Code appears in Graphics Gems 4, III.1. Unless specified otherwise, all calculations and variables stored in this class are relative to the target coordinate system (TCS) for which there is a transformation from screen space to TCS given by the screenToTCS constructor parameter. If the screenToTCS parameter in the constructor is left as the identity matrix then all values are given in screen coordinates. Screen coordinates are (x  [-1,1]) and (y  [-1,1]) where (0,0) is the center of the screen. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3a38b8d07a53a46244d3dca0948700bb"></a><!-- doxytag: member="CPM_ARC_BALL_NS::ArcBall::ArcBall" ref="a3a38b8d07a53a46244d3dca0948700bb" args="(const glm::vec3 &amp;center, float radius, const glm::mat4 &amp;screenToTCS=glm::mat4())" -->
+<a class="anchor" id="abcb3d4d2034a35448cf4639df68c440f"></a><!-- doxytag: member="CPM_ARC_BALL_NS::ArcBall::ArcBall" ref="abcb3d4d2034a35448cf4639df68c440f" args="(const glm::vec3 &amp;center, glm::float_t radius, const glm::mat4 &amp;screenToTCS=glm::mat4())" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -80,7 +80,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">glm::float_t&#160;</td>
           <td class="paramname"><em>radius</em>, </td>
         </tr>
         <tr>
@@ -182,7 +182,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 9 2013 20:33:39 for Arc Ball by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 9 2013 20:40:31 for Arc Ball by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
