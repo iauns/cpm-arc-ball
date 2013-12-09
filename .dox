@@ -18,9 +18,9 @@
 #---------------------------------------------------------------------------
 
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "GLM AABB"
+PROJECT_NAME           = "Arc Ball"
 PROJECT_NUMBER         =
-PROJECT_BRIEF          = "Axis aligned bounding box built on GLM"
+PROJECT_BRIEF          = "Arc ball 3D transformation"
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = ./dox-repo
 CREATE_SUBDIRS         = NO
@@ -188,7 +188,7 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ./glm-aabb
+INPUT                  = ./arc-ball
 INPUT_ENCODING         = UTF-8
 
 # If the value of the INPUT tag contains directories, you can use the
