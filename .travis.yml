@@ -11,6 +11,13 @@ before_install:
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 script: "./tests/run-tests.sh"
+after_success:
+- sudo apt-get --no-install-recommends install doxygen
+- git clone https://github.com/iauns/travis-doxy-helper ./doxy-helper
+- ./doxy-helper/update-doxygen.sh ./.dox ./dox-repo https://github.com/iauns/cpm-arc-ball
 branches:
   only:
     - master
+env:
+  global:
+    secure: MojSJY7Lw5uRdY+vGYNA3Qenvvb8zCkHTv7gqpnCr4yJqxvU2hPOnG/YS33CVs97MspYyAA1wVDBK/IAYKZuoFF6nUGOnYQq0l1qcHrCZm1lQsP/jQ4ucTVOo3PrYk/pk0CDblWJgmSv+d2iPatP9BeBxBEQm6CPB0tKuzI+kek=
