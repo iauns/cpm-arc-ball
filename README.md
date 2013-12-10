@@ -15,4 +15,3 @@ Usage
 ```
 
 See [documentation](http://iauns.github.io/cpm-arc-ball/class_c_p_m___a_r_c___b_a_l_l___n_s_1_1_arc_ball.html).
-
