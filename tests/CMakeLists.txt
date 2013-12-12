@@ -41,16 +41,16 @@ include(${CPM_DIR}/CPM.cmake)
 CPM_AddModule("arc_ball"
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
-# ++ MODULE: batch_testing
-CPM_AddModule("batch_testing"
-  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-testing"
-  GIT_TAG "1.0.5")
-
 # ++ EXTERNAL-MODULE: Google Test
 CPM_AddModule("google_test"
   GIT_REPOSITORY "https://github.com/iauns/cpm-google-test"
   GIT_TAG "1.0.1"
   USE_EXISTING_VER TRUE)
+
+# ++ MODULE: batch_testing
+CPM_AddModule("batch_testing"
+  GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-testing"
+  GIT_TAG "1.0.6")
 
 CPM_Finish()
 
