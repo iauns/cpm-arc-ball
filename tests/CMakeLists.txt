@@ -50,7 +50,7 @@ CPM_AddModule("google_test"
 # ++ MODULE: batch_testing
 CPM_AddModule("batch_testing"
   GIT_REPOSITORY "https://github.com/iauns/cpm-gl-batch-testing"
-  GIT_TAG "1.0.6")
+  GIT_TAG "1.1.1")
 
 CPM_Finish()
 
