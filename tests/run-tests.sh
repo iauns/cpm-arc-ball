@@ -9,7 +9,7 @@ fi
 set -e
 
 pushd ./bin > /dev/null
-  cmake -DCPM_MODULE_CACHE_DIR=${HOME}/.cpm_cache -DUSE_OS_MESA=ON ..
+  cmake -DUSE_OS_MESA=ON ..
   make -j4
   ./arc_ball_test
 popd
